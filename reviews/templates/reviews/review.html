@@ -1,16 +1,24 @@
+{% load static %}
+
 <!DOCTYPE html>
 
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
+        <title>Your Review</title>
+        <link rel="stylesheet" href="{% static "reviews/styles.css" %}">
     </head>
     <body>
         <form method="POST">
             {% csrf_token %}
-            <label for="username">Your Name</label>
-            <input id="username" name="username" type="text">
+            {% for field in form %}
+            <div class="form-control {% if form.field.errors %}errors{% endif %}">
+                {{ form.field.label_tag }}
+                {{ form.field }}
+                {{ form.field.errors }}
+            </div>
+            {% endfor %}
             <button type="submit">Send</button>
         </form>
     </body>
