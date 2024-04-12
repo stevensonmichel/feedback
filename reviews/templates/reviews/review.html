@@ -13,10 +13,10 @@
         <form method="POST">
             {% csrf_token %}
             {% for field in form %}
-            <div class="form-control {% if form.field.errors %}errors{% endif %}">
-                {{ form.field.label_tag }}
-                {{ form.field }}
-                {{ form.field.errors }}
+            <div class="form-control {% if field.errors %}errors{% endif %}">
+                {{ field.label_tag }}
+                {{ field }}
+                {{ field.errors }}
             </div>
             {% endfor %}
             <button type="submit">Send</button>
